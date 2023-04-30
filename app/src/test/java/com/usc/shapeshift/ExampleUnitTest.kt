@@ -1,4 +1,4 @@
-package com.example.shapeshift
+package com.usc.shapeshift
 
 import org.junit.Test
 

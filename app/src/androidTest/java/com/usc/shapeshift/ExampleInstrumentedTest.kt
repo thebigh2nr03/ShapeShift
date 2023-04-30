@@ -1,4 +1,4 @@
-package com.example.shapeshift
+package com.usc.shapeshift
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
