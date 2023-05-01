@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
     tools:context=".SignInActivity">
 
 
@@ -59,7 +60,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:background="@color/orange"
+        android:background="@drawable/gradient"
         android:text="Login"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -119,9 +120,11 @@
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="14sp"
+        android:fontFamily="@font/outfit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/emailLayout" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

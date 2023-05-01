@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SignUpActivity">
-
+    android:background="@drawable/gradient_background"
+    tools:context=".SignUpActivity" >
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/emailLayout"
@@ -83,11 +83,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:background="@color/orange"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/gradient"
         android:text="Sign Up"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -97,27 +97,14 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="Already registered? Sign in!"
         android:textColor="@color/black"
-        android:layout_marginTop="24dp"
 
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button" />
-
-    <ImageView
-        android:id="@+id/shapeshiftLogo"
-        android:layout_width="153dp"
-        android:layout_height="39dp"
-        android:layout_marginHorizontal="50dp"
-        android:layout_marginVertical="30dp"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/shapeshiftlogo"
-        tools:layout_editor_absoluteX="129dp"
-        tools:layout_editor_absoluteY="34dp" />
 
     <TextView
         android:id="@+id/signUpLabel"
@@ -130,9 +117,9 @@
         android:textColor="@color/black"
         android:textSize="60sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/signupHint"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/signupHint" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/signupHint"
@@ -144,9 +131,30 @@
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/emailLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_marginEnd="-160dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/shapeshiftLogo"
+        android:layout_width="153dp"
+        android:layout_height="39dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/emailLayout" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/shapeshiftlogo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
