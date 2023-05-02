@@ -1,7 +1,7 @@
 # ShapeShift
 An app that logs fitness information in a calendar-based UI
 
-[![Everything Is AWESOME](https://img.youtube.com/vi/StTqXEQ2l-Y/0.jpg)](https://www.youtube.com/watch?v=StTqXEQ2l-Y "Everything Is AWESOME")
+[![ShapeShift Demo Video](https://user-images.githubusercontent.com/66183008/235789253-69ecc477-1eab-45e0-90af-d66af402198a.png)](https://www.youtube.com/watch?v=jkLhq6_A8HM "ShapeShift")
 
 ![2023-05-02-17-22-33](https://user-images.githubusercontent.com/66183008/235789253-69ecc477-1eab-45e0-90af-d66af402198a.png)
 
