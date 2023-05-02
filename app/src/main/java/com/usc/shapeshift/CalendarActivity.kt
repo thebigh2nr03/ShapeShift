@@ -10,10 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.children
 import androidx.core.view.isVisible
@@ -26,6 +23,7 @@ import androidx.core.view.children
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.getValue
 import com.kizitonwose.calendar.core.*
 import com.kizitonwose.calendar.view.MonthDayBinder
 import com.kizitonwose.calendar.view.MonthHeaderFooterBinder
@@ -58,41 +56,32 @@ class CalendarActivity : AppCompatActivity() {
 
     private val inputDialog by lazy {
         val editEvent = EditText(this@CalendarActivity)
-        /*val editProgressNote = EditText(this@CalendarActivity)
+        editEvent.hint = "Event"
+        val editProgressNote = EditText(this@CalendarActivity)
+        editProgressNote.hint = "Progress Note"
         val editWeight = EditText(this@CalendarActivity)
+        editWeight.hint = "Weight"
         val editWorkout = EditText(this@CalendarActivity)
-        val editMeal = EditText(this@CalendarActivity)*/
-        val layout = FrameLayout(this@CalendarActivity).apply {
+        editWorkout.hint = "Workout"
+        val editMeal = EditText(this@CalendarActivity)
+        editMeal.hint = "Meal"
+        val layout = LinearLayout(this@CalendarActivity).apply {
             // Setting the padding on the EditText only pads the input area
             // not the entire EditText so we wrap it in a FrameLayout.
+            orientation = LinearLayout.VERTICAL
             val padding = dpToPx(20, this@CalendarActivity)
             setPadding(padding, padding, padding, padding)
-            addView(editEvent, FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ))
-            /*addView(editProgressNote, FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ))
-            addView(editWeight, FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ))
-            addView(editWorkout, FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ))
-            addView(editMeal, FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.WRAP_CONTENT
-            ))*/
+            addView(editEvent)
+            addView(editProgressNote)
+            addView(editWeight)
+            addView(editWorkout)
+            addView(editMeal)
         }
         AlertDialog.Builder(this@CalendarActivity)
             .setTitle("Enter Entry Title")
             .setView(layout)
             .setPositiveButton("Save") { _, _ ->
-                saveEvent(editEvent.text.toString()/*, editProgressNote.text.toString(), editWeight.text.toString(), editWorkout.text.toString(), editMeal.text.toString()*/)
+                saveEvent(editEvent.text.toString(), editProgressNote.text.toString(), editWeight.text.toString(), editWorkout.text.toString(), editMeal.text.toString())
                 // Prepare EditText for reuse.
                 editEvent.setText("")
             }
@@ -125,7 +114,7 @@ class CalendarActivity : AppCompatActivity() {
     private val titleYearFormatter = DateTimeFormatter.ofPattern("yyyy")
     private val titleFormatter = DateTimeFormatter.ofPattern("MMMM yyyy")
     private val selectionFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy")
-    private val events = mutableMapOf<Long, List<CalendarEntry>>()
+    private var events = mutableMapOf<String, List<CalendarEntry>>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -133,7 +122,13 @@ class CalendarActivity : AppCompatActivity() {
 
         firebaseAuth = FirebaseAuth.getInstance()
         database = FirebaseDatabase.getInstance().getReference("Users")
-
+        database.child(firebaseAuth.currentUser!!.uid).child("events").get().addOnSuccessListener {
+            if (it.exists()) {
+                events = it.getValue<HashMap<String, List<CalendarEntry>>>()!!
+            } else {
+                Toast.makeText(this, "User Doesn't Exist", Toast.LENGTH_SHORT).show()
+            }
+        }
         binding = ActivityCalendarBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.calendarRv.apply {
@@ -242,15 +237,14 @@ class CalendarActivity : AppCompatActivity() {
         }
     }
 
-    private fun saveEvent(event: String, /*progressNote: String, weight: String, workout: String, meal: String*/) {
+    private fun saveEvent(event: String, progressNote: String, weight: String, workout: String, meal: String) {
         if (event.isBlank()) {
             Toast.makeText(this@CalendarActivity, "Event cannot be blank", Toast.LENGTH_LONG)
                 .show()
         } else {
             selectedDate?.let {
-                events[it.toEpochDay()] =
-                    events[it.toEpochDay()].orEmpty().plus(CalendarEntry(UUID.randomUUID().toString(), event,/*, progressNote, weight, workout, meal,*/ it.toEpochDay()))
-                //firebaseAuth.currentUser?.let{ it1 -> database.child(it1.uid).child("events").setValue(events)}
+                events[it.toEpochDay().toString()] =
+                    events[it.toEpochDay().toString()].orEmpty().plus(CalendarEntry(UUID.randomUUID().toString(), event, progressNote, weight, workout, meal, it.toEpochDay()))
                 updateAdapterForDate(it)
             }
         }
@@ -258,21 +252,18 @@ class CalendarActivity : AppCompatActivity() {
 
     private fun deleteEvent(event: CalendarEntry) {
         val date = event.date
-        events[date] = events[date].orEmpty().minus(event)
+        events[date.toString()] = events[date.toString()].orEmpty().minus(event)
         updateAdapterForDate(LocalDate.ofEpochDay(date))
     }
 
     private fun updateAdapterForDate(date: LocalDate) {
         eventsAdapter.apply {
             events.clear()
-            events.addAll(this@CalendarActivity.events[date.toEpochDay()].orEmpty())
+            events.addAll(this@CalendarActivity.events[date.toEpochDay().toString()].orEmpty())
             notifyDataSetChanged()
         }
-        binding.dateText.text = selectionFormatter.format(date)
-    }
-
-    fun saveEvents(){
         firebaseAuth.currentUser?.let{ it1 -> database.child(it1.uid).child("events").setValue(events)}
+        binding.dateText.text = selectionFormatter.format(date)
     }
 }
 
@@ -292,13 +283,13 @@ internal val Context.inputMethodManager
 
 
 data class CalendarEntry(
-    val id: String,
-    val event: String,/*
-    val progressNote: String,
-    val weight: String,
-    val workout: String,
-    val meal: String,*/
-    val date: Long)
+    val id: String? = null,
+    val event: String? = null,
+    val progressNote: String? = null,
+    val weight: String? = null,
+    val workout: String? = null,
+    val meal: String? = null,
+    val date: Long = 0)
 
 class EntryAdapter(val onClick: (CalendarEntry) -> Unit) :
     RecyclerView.Adapter<EntryAdapter.EventsViewHolder>() {
@@ -328,6 +319,10 @@ class EntryAdapter(val onClick: (CalendarEntry) -> Unit) :
 
         fun bind(event: CalendarEntry) {
             binding.eventField.text = event.event
+            binding.progressNoteField.setText(event.progressNote)
+            binding.weightField.setText(event.weight)
+            binding.workoutField.setText(event.workout)
+            binding.mealField.setText(event.meal)
         }
     }
 }

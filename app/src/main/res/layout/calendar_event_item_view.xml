@@ -14,6 +14,7 @@
 
         <TextView
             android:id="@+id/eventField"
+            android:inputType="none"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -30,7 +31,7 @@
             android:textSize="16sp"
             android:hint="Progress Note"
             android:fontFamily="@font/outfit_regular"
-            android:inputType="textMultiLine" />
+            android:inputType="none" />
 
         <EditText
             android:id="@+id/weightField"
@@ -40,7 +41,7 @@
             android:textSize="16sp"
             android:hint="Weight"
             android:fontFamily="@font/outfit_regular"
-            android:inputType="number" />
+            android:inputType="none" />
 
         <EditText
             android:id="@+id/workoutField"
@@ -51,7 +52,7 @@
             android:textSize="16sp"
             android:hint="Workout"
             android:fontFamily="@font/outfit_regular"
-            android:inputType="textMultiLine" />
+            android:inputType="none" />
 
         <EditText
             android:id="@+id/mealField"
@@ -62,7 +63,7 @@
             android:textSize="16sp"
             android:hint="Meal"
             android:fontFamily="@font/outfit_regular"
-            android:inputType="textMultiLine" />
+            android:inputType="none" />
 
     </LinearLayout>
 

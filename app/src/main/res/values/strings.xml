@@ -2,6 +2,6 @@
     <string name="app_name">ShapeShift</string>
     <string name="username">Henry</string>
     <string name="greeting1">GOOD MORNING,</string>
-    <string name="greeting2">GOOD AFTERNOON,,</string>
+    <string name="greeting2">GOOD AFTERNOON,</string>
     <string name="greeting3">GOOD EVENING,</string>
 </resources>
