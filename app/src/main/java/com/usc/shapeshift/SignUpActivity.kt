@@ -38,7 +38,7 @@ class SignUpActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, pwd).addOnCompleteListener {
                         if (it.isSuccessful) {
                             database = FirebaseDatabase.getInstance().getReference("Users")
-                            val user = User(name)
+                            val user = User(name, null)
                             firebaseAuth.currentUser?.let { it1 -> database.child(it1.uid).setValue(user) }
 
                             val intent = Intent(this, SignInActivity::class.java)

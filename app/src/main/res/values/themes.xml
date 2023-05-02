@@ -11,6 +11,8 @@
         <!-- Customize your theme here. -->
         <item name="android:statusBarColor" >@color/black</item>
 
+        <item name="floatingActionButtonStyle">@style/FloatingButtonStyle</item>
+
     </style>
 
     <!-- Base application theme. -->

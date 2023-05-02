@@ -1,3 +1,5 @@
 package com.usc.shapeshift
 
-data class User(val Name : String? = null){}
+import java.time.LocalDate
+
+data class User(val Name : String? = null, val events : Map<LocalDate, List<CalendarEntry>>?){}

@@ -12,6 +12,7 @@
         android:theme="@style/Theme.ShapeShift"
         tools:targetApi="31">
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".SignInActivity"
             android:exported="true">
             <intent-filter>
@@ -21,7 +22,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:windowSoftInputMode="adjustPan"
+            android:name=".CalendarActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
