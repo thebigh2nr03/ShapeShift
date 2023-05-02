@@ -6,10 +6,32 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/foodImage"
+        android:layout_width="700dp"
+        android:layout_height="700dp"
+        android:layout_marginEnd="-300dp"
+        android:layout_marginBottom="250dp"
+        app:layout_constraintBottom_toBottomOf="@+id/circleBack"
+        app:layout_constraintEnd_toStartOf="@+id/circleBack"
+        app:srcCompat="@drawable/food_image" />
+
+    <ImageView
+        android:id="@+id/circleBack"
+        android:layout_width="800dp"
+        android:layout_height="800dp"
+        android:layout_marginEnd="-550dp"
+        android:layout_marginBottom="-220dp"
+        app:layout_constraintStart_toStartOf="@+id/bgGrad"
+        app:layout_constraintEnd_toEndOf="@+id/bgGrad"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:srcCompat="@drawable/circle" />
+
+    <ImageView
+        android:id="@+id/bgGrad"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
+        android:layout_height="270dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,19 +40,138 @@
         tools:layout_editor_absoluteY="26dp" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginEnd="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/shapeshiftLogo"
+        android:layout_width="120dp"
+        android:layout_height="39dp"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="30dp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.684"
-        app:srcCompat="@drawable/circle" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/shapeshiftlogo"
+        tools:layout_editor_absoluteX="129dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <TextView
+        android:id="@+id/welcomeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/outfit_regular"
+        android:text="@string/greeting1"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintTop_toBottomOf="@+id/shapeshiftLogo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginVertical="22dp"
+        android:fontFamily="@font/outfit_bold"
+        android:text="@string/username"
+        android:textAlignment="viewStart"
+        android:textColor="@color/black"
+        android:textSize="48sp"
+        app:layout_constraintTop_toTopOf="@+id/welcomeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/calendarButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/gradient"
+        android:fontFamily="@font/outfit_bold"
+        android:text="Calendar ▶"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Name"
+    />
+
+    <TextView
+        android:id="@+id/logTodays"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/outfit_regular"
+        android:layout_marginHorizontal="65dp"
+        android:layout_marginVertical="290dp"
+        android:text="LOG TODAY'S..."
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintHorizontal_bias="0.124"
+        app:layout_constraintVertical_bias="0.35"
+        app:layout_constraintTop_toTopOf="@+id/circleBack"
+        app:layout_constraintStart_toStartOf="@+id/circleBack" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/progressNoteButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:background="#00000000"
+        android:fontFamily="@font/outfit_bold"
+        android:text="◀ Progress Note"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintStart_toStartOf="@+id/logTodays"
+        app:layout_constraintTop_toBottomOf="@+id/logTodays" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/workoutButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:fontFamily="@font/outfit_bold"
+        android:text="◀ Workout"
+        android:textAllCaps="false"
+        android:background="#00000000"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/progressNoteButton"
+        app:layout_constraintStart_toStartOf="@+id/logTodays"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/mealButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:fontFamily="@font/outfit_bold"
+        android:text="◀ Meal"
+        android:textAllCaps="false"
+        android:background="#00000000"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintTop_toBottomOf="@+id/workoutButton"
+        app:layout_constraintStart_toStartOf="@+id/logTodays"
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logOutButton"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:background="@drawable/logout_icon"
+        android:fontFamily="@font/outfit_bold"
+        android:textAllCaps="false"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:layout_marginEnd="50dp"
+        app:layout_constraintTop_toTopOf="@+id/shapeshiftLogo"
+        app:layout_constraintBottom_toBottomOf="@+id/shapeshiftLogo"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

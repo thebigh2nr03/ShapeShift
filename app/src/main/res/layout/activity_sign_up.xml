@@ -4,16 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
     tools:context=".SignUpActivity" >
 
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="270dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/gradient_background" />
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/emailLayout"
+        android:id="@+id/nameLayout"
         style="@style/LoginTextInputOuterFieldStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
-        android:layout_marginTop="350dp"
+        android:layout_marginTop="320dp"
         app:boxStrokeColor="@color/orange"
         app:hintTextColor="@color/orange"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,10 +31,35 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/nameField"
+            style="@style/LoginTextInputInnerFieldStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
+            android:hint="Name"
+            android:inputType="textEmailAddress" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/emailLayout"
+        style="@style/LoginTextInputOuterFieldStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:layout_marginTop="24dp"
+        app:boxStrokeColor="@color/orange"
+        app:hintTextColor="@color/orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nameLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/emailField"
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
             android:hint="Email"
             android:inputType="textEmailAddress" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,6 +84,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
             android:hint="Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -74,6 +109,7 @@
             style="@style/LoginTextInputInnerFieldStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/outfit_regular"
             android:hint="Confirm Password"
             android:inputType="textPassword" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -85,9 +121,9 @@
         android:layout_marginHorizontal="50dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/gradient"
+        android:fontFamily="@font/outfit_bold"
         android:text="Sign Up"
         android:textColor="@color/white"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -98,6 +134,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:fontFamily="@font/outfit_regular"
         android:text="Already registered? Sign in!"
         android:textColor="@color/black"
 
@@ -116,7 +153,7 @@
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="60sp"
-        android:textStyle="bold"
+        android:fontFamily="@font/outfit_bold"
         app:layout_constraintBottom_toTopOf="@+id/signupHint"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -127,27 +164,18 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="50dp"
         android:layout_marginVertical="24dp"
+        android:fontFamily="@font/outfit_regular"
         android:text="Create an account to start your fitness journey."
         android:textAlignment="viewStart"
         android:textColor="@color/black"
         android:textSize="14sp"
-        app:layout_constraintBottom_toTopOf="@+id/emailLayout"
+        app:layout_constraintBottom_toTopOf="@+id/nameLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="400dp"
-        android:layout_height="400dp"
-        android:layout_marginEnd="-160dp"
-        android:layout_marginTop="40dp"
-        app:layout_constraintTop_toBottomOf="@id/textView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/circle" />
-
-    <ImageView
         android:id="@+id/shapeshiftLogo"
-        android:layout_width="153dp"
+        android:layout_width="120dp"
         android:layout_height="39dp"
         android:layout_marginHorizontal="50dp"
         android:layout_marginVertical="30dp"

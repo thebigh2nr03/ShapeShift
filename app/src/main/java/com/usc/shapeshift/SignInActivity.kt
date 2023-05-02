@@ -9,8 +9,8 @@ import com.usc.shapeshift.databinding.ActivitySignInBinding
 
 class SignInActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivitySignInBinding
-    private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var binding : ActivitySignInBinding
+    private lateinit var firebaseAuth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
